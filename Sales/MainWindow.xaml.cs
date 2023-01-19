@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Data.SqlClient;
+using System.Windows.Controls.Primitives;
+using System.Threading;
 
 namespace Sales
 {
@@ -41,39 +43,60 @@ namespace Sales
                 MessageBox.Show(ex.Message);
                 this.Close();
             }
-            ShowDepartmentsCount();
-            ShowManagersCount();
-            ShowProductsCount();
+            ShowTotalMonitorsCount();
+            ShowTotalStatistics();
         }
 
-        private void ShowDepartmentsCount()
+        #region Show Monitors
+        private void ShowTotalMonitorsCount()
         {
-            String sql = "SELECT COUNT(*) FROM Departments";
-            using var cmd = new SqlCommand(sql, _connection);
-            MonitorDepartments.Content =
-                Convert.ToString(
-                    cmd.ExecuteScalar()
-                );
-        }
+            SqlCommand cmd = new();
+            cmd.Connection = _connection;
 
-        private void ShowManagersCount()
-        {
-            String sql = "SELECT COUNT(*) FROM Managers";
-            using var cmd = new SqlCommand(sql, _connection);
-            MonitorManagers.Content =
-                Convert.ToString(
-                    cmd.ExecuteScalar()
-                );
-        }
+            cmd.CommandText = @$"SELECT COUNT(*) FROM Departments";
+            MonitorDepartments.Content = Convert.ToString(cmd.ExecuteScalar());
 
-        private void ShowProductsCount()
-        {
-            String sql = "SELECT COUNT(*) FROM Products";
-            using var cmd = new SqlCommand(sql, _connection);
-            MonitorProducts.Content =
-                Convert.ToString(
-                    cmd.ExecuteScalar()
-                );
+            cmd.CommandText = @$"SELECT COUNT(*) FROM Managers";
+            MonitorManagers.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT COUNT(*) FROM Products";
+            MonitorProducts.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT COUNT(*) FROM Sales";
+            MonitorSales.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.Dispose();
         }
+        #endregion
+
+        #region Show Total Stats
+        private void ShowTotalStatistics()
+        {
+            SqlCommand cmd = new();
+            cmd.Connection = _connection;
+
+            String date = $"2022-{DateTime.Now.Month}-{DateTime.Now.Day + 1}";
+
+            cmd.CommandText = $@"SELECT COUNT(*) FROM Sales S WHERE CAST(S.Moment AS datetime) = '{date}'";
+            StatTotalSales.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT COUNT(S.Cnt) FROM Sales S JOIN Products P ON P.Id = S.Id_product WHERE CAST(S.Moment AS datetime)  = '{date}'";
+            StatTotalProducts.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT ROUND(SUM(S.Cnt * P.Price), 2) FROM Sales S JOIN Products P ON P.Id = S.Id_product WHERE CAST(S.Moment AS datetime)  = '{date}'";
+            StatTotalMoney.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT TOP 1 CONCAT(m.Surname,' ', m.Name) FROM Sales s JOIN Managers m ON m.Id = s.Id_manager JOIN Products p ON p.Id = s.Id_product WHERE CAST(S.Moment AS datetime) = '{date}' GROUP BY m.Surname, m.Name ORDER BY SUM(p.Price)";
+            StatTotalManager.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT TOP 1 d.Name FROM Departments d JOIN Managers m ON d.Id = m.Id_main_dep JOIN Sales s ON m.Id = s.Id_manager WHERE CAST(S.Moment AS datetime) = '{date}' GROUP BY d.Name ORDER BY COUNT(s.Cnt)";
+            StatTotalDepartament.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.CommandText = $@"SELECT TOP 1 p.Name FROM Sales s JOIN Products p ON p.Id = s.Id_product WHERE CAST(S.Moment AS datetime) = '{date}' GROUP BY p.Name ORDER BY COUNT(s.Id_product)";
+            StatTotalProduct.Content = Convert.ToString(cmd.ExecuteScalar());
+
+            cmd.Dispose();
+        }
+        #endregion
     }
 }

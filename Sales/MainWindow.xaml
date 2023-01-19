@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
 
-
+        <!--Monitor-->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -52,7 +52,59 @@
 								Content="Продуктов" />
             <Label Grid.Column="1" Grid.Row="4"
                    x:Name="MonitorProducts"/>
+            <Label Grid.Column="0" Grid.Row="5"
+								Content="Продаж" />
+            <Label Grid.Column="1" Grid.Row="5"
+                   x:Name="MonitorSales"/>
 
         </Grid>
+        <!--End Monitor-->
+        
+        <!--Daily Statistic-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+								Content="Статистика за день" FontSize="20" FontWeight="DemiBold"
+								HorizontalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1"
+								Content="Продаж(Чек)" />
+            <Label Grid.Column="1" Grid.Row="1" 
+                                x:Name="StatTotalSales" />
+            <Label Grid.Column="0" Grid.Row="2" 
+                                Content="Продаж(Товар)" />
+            <Label Grid.Column="1" Grid.Row="2" 
+                                x:Name="StatTotalProducts" />
+            <Label Grid.Column="0" Grid.Row="3" 
+                                Content="Гонорар" />
+            <Label Grid.Column="1" Grid.Row="3" 
+                                x:Name="StatTotalMoney" />
+            <Label Grid.Column="0" Grid.Row="4" 
+                                Content="Лучший(Менеджер)" />
+            <Label Grid.Column="1" Grid.Row="4" 
+                                x:Name="StatTotalManager" />
+            <Label Grid.Column="0" Grid.Row="5" 
+                                Content="Лучший(Отдел)" />
+            <Label Grid.Column="1" Grid.Row="5" 
+                                x:Name="StatTotalDepartament" />
+            <Label Grid.Column="0" Grid.Row="6" 
+                                Content="Лучший(Товар)" />
+            <Label Grid.Column="1" Grid.Row="6" 
+                                x:Name="StatTotalProduct" />
+        </Grid>
+        <!--End Daily Statistic-->
+        
     </Grid>
 </Window>
