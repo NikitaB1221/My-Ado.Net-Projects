@@ -59,7 +59,7 @@
 
         </Grid>
         <!--End Monitor-->
-        
+
         <!--Daily Statistic-->
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -105,6 +105,44 @@
                                 x:Name="StatTotalProduct" />
         </Grid>
         <!--End Daily Statistic-->
-        
+
+        <!--Departments-->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <Label Content="Отделы" FontSize="20" FontWeight="DemiBold"
+								HorizontalAlignment="Center"/>
+            <TextBlock x:Name="DepartmentCell"/>
+        </StackPanel>
+        <!--End Departments-->
+
+        <!--Products-->
+        <ScrollViewer Grid.Row="1" Grid.Column="1"  VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Товары" FontSize="20" FontWeight="DemiBold"
+								HorizontalAlignment="Center"/>
+                <TextBlock x:Name="ProductCell"/>
+            </StackPanel>
+        </ScrollViewer>
+        <!--End Products-->
+
+        <!--Managers-->
+        <ScrollViewer Grid.Row="0" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel  Orientation="Vertical">
+                <Label Content="Менеджеры" FontSize="20" FontWeight="DemiBold"
+								HorizontalAlignment="Center"/>
+                <TextBlock x:Name="ManagerCell"/>
+            </StackPanel>
+        </ScrollViewer>
+        <!--End Managers-->
+
+        <!--Sales-->
+        <ScrollViewer Grid.Row="1" Grid.Column="2" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Продажи" FontSize="20" FontWeight="DemiBold"
+								HorizontalAlignment="Center"/>
+                <TextBlock x:Name="SaleCell"/>
+            </StackPanel>
+        </ScrollViewer>
+        <!--End Sales-->
+
     </Grid>
 </Window>
