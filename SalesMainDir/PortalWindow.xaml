@@ -13,5 +13,6 @@
         <Button Content="Conected mode" Margin="5" FontSize="14" FontWeight="DemiBold" Click="Connected_Click"/>
         <Button Content="Detached mode" Margin="5" FontSize="14" FontWeight="DemiBold" Click="Detached_Click"/>
         <Button Content="LINQ to SQL(Deprecated)" Margin="5" FontSize="14" FontWeight="DemiBold" Click="Button_Click" />
+        <Button Content="Entity Framework" Margin="5" FontSize="14" FontWeight="DemiBold" Click="EF_Click" />
     </StackPanel>
 </Window>

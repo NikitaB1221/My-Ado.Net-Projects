@@ -19,7 +19,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-
         <!--Monitor-->
         <Grid>
             <Grid.ColumnDefinitions>
