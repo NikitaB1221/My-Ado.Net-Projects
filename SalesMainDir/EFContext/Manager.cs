@@ -16,9 +16,15 @@ namespace Sales.EFContext
         public Guid?  Id_sec_dep { get; set; }
         public Guid?  Id_chief { get; set; }
 
+        public Department MainDep { get; set; } = null!;
+        public Department? SecDep { get; set; }
+
+        public Manager? Chief { get; set; }
+        public List<Manager> Subordinates { get; set; }
+
         public String ToShortString()
         {
-            return $"{Id.ToString()[..4]} {Surname} {Name[0]} {Secname[0]}";
+            return $"{Surname} {Name[0]}. {Secname[0]}.";
         }
     }
 }

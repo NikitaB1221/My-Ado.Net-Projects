@@ -20,6 +20,20 @@ namespace Sales.EFContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Manager>()
+                .HasOne(m => m.MainDep)
+                .WithMany(d => d.Managers)
+                .HasForeignKey(m => m.Id_main_dep);
+
+            modelBuilder.Entity<Manager>()
+                .HasOne(m => m.SecDep)
+                .WithMany(d => d.PartWorker)
+                .HasForeignKey(m => m.Id_sec_dep);
+
+            modelBuilder.Entity<Manager>().HasOne(m => m.Chief)
+                .WithMany(m => m.Subordinates)
+                .HasForeignKey(m => m.Id_chief);
+
             SeedDepartments(modelBuilder);
             SeedProducts(modelBuilder);
             SeedManagers(modelBuilder);

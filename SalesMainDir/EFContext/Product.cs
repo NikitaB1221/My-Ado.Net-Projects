@@ -14,7 +14,7 @@ namespace Sales.EFContext
 
         public String ToShortString()
         {
-            return Id.ToString()[..4] + " " + Name + " " + Price;
+            return  Name + " " + Price;
         }
     }
 }
