@@ -1,0 +1,30 @@
+﻿<Window x:Class="Sales.LinqWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales"
+        mc:Ignorable="d"
+        Title="LinqWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="Simple" Content="Simple" Margin="10" Click="Simple_Click"/>
+            <Button x:Name="ByName" Content="ByName" Margin="10" Click="ByName_Click"/>
+            <Button x:Name="ByPrice" Content="ByPrice" Margin="10" Click="ByPrice_Click"/>
+            <Button x:Name="Less200" Content="Less 200" Margin="10" Click="Less200_Click"/>
+            <Button x:Name="withG" Content="Начинается на Г" Margin="10" Click="withG_Click"/>
+            <Button x:Name="withOV" Content="Содержит ов" Margin="10" Click="withOV_Click"/>
+            <Button x:Name="join" Content="Объединение" Margin="10" Click="join_Click"/>
+            <Button x:Name="mansdep_join" Content="Менеджер и дополнительный отдел" Margin="10" Click="mansdep_Click"/>
+            <Button x:Name="manchefp_join" Content="Менеджер и начальник" Margin="10" Click="manchefp_Click"/>
+            <Button x:Name="full_join" Content="Всё целиком" Margin="10" Click="full_Click"/>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1">
+        <TextBlock x:Name="textBlock1"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
