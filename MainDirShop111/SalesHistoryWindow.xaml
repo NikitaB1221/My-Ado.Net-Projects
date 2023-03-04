@@ -1,0 +1,47 @@
+﻿<Window x:Class="Shop111.SalesHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop111"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="SalesHistoryWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="18*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0.9" BorderBrush="Black">
+                <ListView x:Name="SalesHistiryLV" ItemsSource="{Binding Sales}"
+                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn 
+                            Header="Moment" DisplayMemberBinding="{Binding Path=Moment}"/>
+                            <GridViewColumn 
+                            Header="Sale Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <EventSetter
+                            Event="MouseDoubleClick"
+                            Handler="ListViewItem_DoubleClick"/>
+                        </Style>
+                    </ListView.Resources>
+                </ListView>
+            </Border>
+            <Label x:Name="SalesListLabel" Grid.Column="1" FontSize="28" FontWeight="DemiBold"/>
+        </Grid>
+        <Button Grid.Row="1" Margin="150 5" Content="Delete Entry" FontSize="16" FontWeight="DemiBold" Click="DeleteEntry_Click"/>
+        <Button Grid.Row="2" Margin="150 5" Content="Clean the History" FontSize="16" FontWeight="DemiBold" Click="CleanTheHistory_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="Shop111.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop111"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="675" Width="1200">
+    <StackPanel Orientation="Vertical">
+        <Label  HorizontalAlignment="Center" Margin="0 75 0 75" FontSize="48" FontWeight="DemiBold" Cursor="None" Foreground="Gray" >
+            Shop Menu
+        </Label>
+        <Button Content="Catalog" Padding="20" Margin="20 30" FontSize="24" FontWeight="DemiBold" Click="Catalog_Click" Background="#8CDDDDDD"/>
+        <Button Content="Sales History" Padding="20" Margin="20 30" FontSize="24" FontWeight="DemiBold" Click="CheckHistory_Click"  Background="#8CDDDDDD"/>
+        <Button Content="Personnel List" Padding="20" Margin="20 30" FontSize="24" FontWeight="DemiBold" Click="PersList_Click"  Background="#8CDDDDDD"/>
+    </StackPanel>
+</Window>
